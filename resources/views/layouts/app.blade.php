@@ -143,6 +143,73 @@
                         Ajukan Permohonan
                     </a>
                 </div>
+
+                <div class="flex items-center md:hidden">
+                    <button id="mobile-menu-button" type="button"
+                        class="text-gray-500 hover:text-tosca-600 focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path id="icon-menu" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                            <path id="icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="mobile-menu-panel"
+            class="hidden md:hidden bg-white shadow-xl absolute w-full left-0 border-t border-gray-100 h-[calc(100vh-5rem)] overflow-y-auto">
+            <div class="px-4 py-4 space-y-1 pb-10">
+                <a href="{{ route('dashboard') }}"
+                    class="block px-3 py-2 rounded-md text-base font-bold text-gray-900 bg-gray-50 hover:bg-tosca-50">Dashboard</a>
+
+                <div class="font-bold text-sm text-gray-500 px-3 pt-4 pb-1 uppercase tracking-wider">Profil</div>
+                <a href="{{ route('profil.ppid') }}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-tosca-50">Profil PPID</a>
+                <a href="{{ route('profil.visi-misi') }}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-tosca-50">Visi & Misi</a>
+                <a href="{{ route('profil.struktur') }}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-tosca-50">Struktur Organisasi</a>
+                <a href="{{ route('profil.maklumat') }}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-tosca-50">Maklumat Layanan</a>
+
+                <div class="font-bold text-sm text-gray-500 px-3 pt-4 pb-1 uppercase tracking-wider border-t mt-2">
+                    Dokumen</div>
+                <a href="{{ route('dokumen.regulasi') }}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-tosca-50">Regulasi</a>
+                <a href="{{ route('dokumen.sop') }}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-tosca-50">SOP</a>
+                <a href="{{ route('dokumen.sk') }}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-tosca-50">SK PPID</a>
+
+                <div class="font-bold text-sm text-gray-500 px-3 pt-4 pb-1 uppercase tracking-wider border-t mt-2">
+                    Daftar Informasi</div>
+                <a href="{{ route('informasi.berkala') }}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-tosca-50">Informasi Berkala</a>
+                <a href="{{ route('informasi.serta-merta') }}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-tosca-50">Informasi Serta Merta</a>
+                <a href="{{ route('informasi.setiap-saat') }}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-tosca-50">Informasi Setiap Saat</a>
+                <a href="{{ route('informasi.dikecualikan') }}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-tosca-50">Informasi Dikecualikan</a>
+
+                <div class="font-bold text-sm text-gray-500 px-3 pt-4 pb-1 uppercase tracking-wider border-t mt-2">
+                    Laporan</div>
+                <a href="{{ route('laporan.akses') }}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-tosca-50">Laporan Akses Informasi</a>
+                <a href="{{ route('laporan.pelayanan') }}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-tosca-50">Laporan Pelayanan Publik</a>
+                <a href="{{ route('laporan.agenda') }}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-tosca-50">Laporan Agenda Bulanan</a>
+
+                <div class="mt-6 pt-4 border-t border-gray-200">
+                    <a href="{{ route('permohonan.create') }}"
+                        class="block w-full text-center px-4 py-3 bg-gradient-to-r from-tosca-500 to-tosca-600 text-white rounded-lg font-bold shadow-md hover:shadow-lg">
+                        Ajukan Permohonan
+                    </a>
+                </div>
             </div>
         </div>
     </header>
@@ -179,6 +246,22 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('mobile-menu-button');
+            const panel = document.getElementById('mobile-menu-panel');
+            const iconMenu = document.getElementById('icon-menu');
+            const iconClose = document.getElementById('icon-close');
+
+            if (btn && panel) {
+                btn.addEventListener('click', () => {
+                    panel.classList.toggle('hidden');
+                    iconMenu.classList.toggle('hidden');
+                    iconClose.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

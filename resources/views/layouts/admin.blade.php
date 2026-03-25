@@ -30,12 +30,26 @@
 
 <body class="bg-gray-50 font-sans antialiased text-gray-900 flex h-screen overflow-hidden">
 
-    <aside class="w-64 bg-tosca-900 text-white flex flex-col shadow-xl z-20 hidden md:flex">
-        <div class="h-16 flex items-center px-6 bg-tosca-900 border-b border-tosca-800">
-            <div
-                class="w-8 h-8 bg-white text-tosca-700 font-black rounded flex items-center justify-center text-xl mr-3">
-                P</div>
-            <span class="font-bold text-lg tracking-wide">Admin PPID</span>
+    <div id="sidebar-overlay" class="fixed inset-0 bg-gray-900 bg-opacity-50 z-40 hidden md:hidden transition-opacity">
+    </div>
+
+    <aside id="sidebar"
+        class="fixed inset-y-0 left-0 z-50 w-64 bg-tosca-900 text-white flex flex-col shadow-xl transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-300 ease-in-out">
+
+        <div class="h-16 flex items-center justify-between px-6 bg-tosca-900 border-b border-tosca-800">
+            <div class="flex items-center">
+                <div
+                    class="w-8 h-8 bg-white text-tosca-700 font-black rounded flex items-center justify-center text-xl mr-3">
+                    P
+                </div>
+                <span class="font-bold text-lg tracking-wide">Admin PPID</span>
+            </div>
+            <button id="close-sidebar-button" class="md:hidden text-tosca-200 hover:text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
         </div>
 
         <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1">
@@ -106,35 +120,51 @@
 
         <div class="p-4 bg-tosca-900 border-t border-tosca-800 text-sm">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-full bg-tosca-700 flex items-center justify-center">
+                <div class="w-8 h-8 rounded-full bg-tosca-700 flex items-center justify-center shrink-0">
                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                     </svg>
                 </div>
-                <div>
-                    <p class="font-bold text-white">{{ Auth::user()->name ?? 'Admin' }}</p>
-                    <p class="text-xs text-tosca-300">ASN Dispora Jatim</p>
+                <div class="overflow-hidden">
+                    <p class="font-bold text-white truncate">{{ Auth::user()->name ?? 'Admin' }}</p>
+                    <p class="text-xs text-tosca-300 truncate">ASN Dispora Jatim</p>
                 </div>
             </div>
         </div>
     </aside>
 
-    <div class="flex-1 flex flex-col h-screen overflow-hidden">
+    <div class="flex-1 flex flex-col h-screen overflow-hidden w-full relative">
 
-        <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6 z-10 shadow-sm">
-            <div class="text-gray-600 font-medium">
-                Sistem Pengelolaan Informasi
+        <header
+            class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-4 sm:px-6 z-10 shadow-sm shrink-0">
+
+            <div class="flex items-center gap-3">
+                <button id="mobile-sidebar-button"
+                    class="md:hidden text-gray-500 hover:text-tosca-600 focus:outline-none p-1">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+
+                <div class="text-gray-600 font-medium hidden sm:block">
+                    Sistem Pengelolaan Informasi
+                </div>
+                <div class="text-gray-600 font-bold sm:hidden">
+                    Admin Panel
+                </div>
             </div>
 
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3 sm:gap-4">
                 <a href="{{ route('dashboard') }}" target="_blank"
                     class="text-sm text-tosca-600 hover:text-tosca-800 font-semibold flex items-center gap-1">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 hidden sm:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                     </svg>
-                    Lihat Web Publik
+                    <span class="hidden sm:inline">Lihat Web Publik</span>
+                    <span class="sm:hidden">Web</span>
                 </a>
 
                 <span class="w-px h-6 bg-gray-200"></span>
@@ -142,24 +172,45 @@
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit"
-                        class="px-4 py-2 bg-red-50 text-red-600 hover:bg-red-500 hover:text-white rounded-lg text-sm font-bold transition-colors flex items-center gap-2">
+                        class="px-3 sm:px-4 py-2 bg-red-50 text-red-600 hover:bg-red-500 hover:text-white rounded-lg text-sm font-bold transition-colors flex items-center gap-1 sm:gap-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
                             </path>
                         </svg>
-                        Logout
+                        <span class="hidden sm:inline">Logout</span>
                     </button>
                 </form>
             </div>
         </header>
 
-        <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 p-6">
+        <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 p-4 sm:p-6">
             @yield('content')
         </main>
 
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnOpen = document.getElementById('mobile-sidebar-button');
+            const btnClose = document.getElementById('close-sidebar-button');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+
+            // Fungsi untuk membuka/menutup sidebar
+            function toggleSidebar() {
+                sidebar.classList.toggle('-translate-x-full');
+                overlay.classList.toggle('hidden');
+            }
+
+            // Event Listeners
+            if (btnOpen) btnOpen.addEventListener('click', toggleSidebar);
+            if (btnClose) btnClose.addEventListener('click', toggleSidebar);
+
+            // Tutup sidebar jika user mengklik area gelap (overlay)
+            if (overlay) overlay.addEventListener('click', toggleSidebar);
+        });
+    </script>
 </body>
 
 </html>
