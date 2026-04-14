@@ -88,7 +88,7 @@
                 <div
                     class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 hover:-translate-y-2 transition-transform duration-300">
                     <div class="bg-gray-50 rounded-xl mb-4 overflow-hidden relative shadow-inner">
-                        <img src="{{ asset('assets/images/informasi.png') }}" alt="Alur Permohonan Informasi"
+                        <img src="{{ asset('assets/images/informasi3.png') }}" alt="Alur Permohonan Informasi"
                             class="w-full h-auto object-contain hover:scale-105 transition-transform duration-500">
                     </div>
                     <h4 class="font-bold text-gray-800 text-center">Permohonan Informasi</h4>
@@ -97,7 +97,7 @@
                 <div
                     class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 hover:-translate-y-2 transition-transform duration-300">
                     <div class="bg-gray-50 rounded-xl mb-4 overflow-hidden relative shadow-inner">
-                        <img src="{{ asset('assets/images/keberatan2.png') }}" alt="Alur Pengajuan Keberatan"
+                        <img src="{{ asset('assets/images/keberatan3.png') }}" alt="Alur Pengajuan Keberatan"
                             class="w-full h-auto object-contain hover:scale-105 transition-transform duration-500">
                     </div>
                     <h4 class="font-bold text-gray-800 text-center">Pengajuan Keberatan</h4>
@@ -106,7 +106,7 @@
                 <div
                     class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 hover:-translate-y-2 transition-transform duration-300">
                     <div class="bg-gray-50 rounded-xl mb-4 overflow-hidden relative shadow-inner">
-                        <img src="{{ asset('assets/images/sengketa2.png') }}" alt="Alur Sengketa Informasi"
+                        <img src="{{ asset('assets/images/sengketa3.png') }}" alt="Alur Sengketa Informasi"
                             class="w-full h-auto object-contain hover:scale-105 transition-transform duration-500">
                     </div>
                     <h4 class="font-bold text-gray-800 text-center">Penyelesaian Sengketa</h4>

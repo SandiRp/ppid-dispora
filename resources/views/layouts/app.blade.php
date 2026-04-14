@@ -21,12 +21,16 @@
                 <div class="flex-shrink-0 flex items-center gap-3">
                     <div
                         class="w-10 h-10 bg-gradient-to-br from-tosca-400 to-tosca-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-tosca-500/30">
-                        <img src="{{ asset('assets/images/logo.jpeg') }}" alt="Logo PPID Dispora"
-                            class="w-10 h-10 object-contain rounded-xl drop-shadow-md">
+                        <a href="{{ route('dashboard') }}">
+                            <img src="{{ asset('assets/images/logo.jpeg') }}" alt="Logo PPID Dispora"
+                                class="w-10 h-10 object-contain rounded-xl drop-shadow-md">
+                        </a>
                     </div>
                     <div>
-                        <h1 class="text-xl font-bold text-gray-900 leading-none">PPID <span
-                                class="text-tosca-600">DISPORA</span></h1>
+                        <a href="{{ route('dashboard') }}">
+                            <h1 class="text-xl font-bold text-gray-900 leading-none">PPID <span
+                                    class="text-tosca-600">DISPORA</span></h1>
+                        </a>
                         <p class="text-xs text-gray-500 font-medium tracking-wider">PROVINSI JAWA TIMUR</p>
                     </div>
                 </div>

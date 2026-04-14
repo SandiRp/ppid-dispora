@@ -22,8 +22,8 @@
                 </div>
 
                 <div class="text-center relative z-20 mt-4">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Logo_Provinsi_Jawa_Timur_%28East_Java_Province_Logo%29.svg/200px-Logo_Provinsi_Jawa_Timur_%28East_Java_Province_Logo%29.svg.png"
-                        alt="Logo Jatim" class="w-20 mx-auto mb-8 opacity-90">
+                    <img src="{{ asset('assets/images/logojatim.svg') }}" alt="Logo Jatim"
+                        class="w-20 mx-auto mb-8 opacity-90">
 
                     <h2
                         class="text-2xl font-black text-gray-800 uppercase tracking-widest mb-8 border-b-2 border-tosca-500 inline-block pb-2">

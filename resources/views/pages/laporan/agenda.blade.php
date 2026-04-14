@@ -7,8 +7,8 @@
 
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-gray-200">
             <div>
-                <h1 class="text-3xl font-bold text-gray-900 mb-2">Agenda Kegiatan PPID</h1>
-                <p class="text-gray-500">Jadwal kegiatan, rapat koordinasi, dan evaluasi tim PPID Dispora Jatim.</p>
+                <h1 class="text-3xl font-bold text-gray-900 mb-2">Agenda Kegiatan Pimpinan</h1>
+                <p class="text-gray-500">Jadwal kegiatan, rapat koordinasi, dan evaluasi Pimpinan PPID Dispora Jatim.</p>
             </div>
             <div class="flex gap-2">
                 <select
