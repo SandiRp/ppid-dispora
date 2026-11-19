@@ -310,6 +310,8 @@
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-tosca-50 hover:text-tosca-600">Prosedur, Waktu & Biaya</a>
                                 <a href="{{ route('standar.hak-kewajiban') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-tosca-50 hover:text-tosca-600">Hak & Kewajiban</a>
+                                <a href="{{ route('permohonan.lacak') }}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-tosca-50 hover:text-tosca-600">Lacak Status Permohonan</a>
                                 <a href="{{ route('standar.faq') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-tosca-50 hover:text-tosca-600">Tanya Jawab (FAQ) & Privasi</a>
                                 <a href="{{ route('standar.kontak') }}"
@@ -356,13 +358,6 @@
                         </svg>
                     </a>
 
-                    <!-- Tombol Aksesibilitas & Ramah Disabilitas di Header -->
-                    <button type="button" onclick="toggleA11yPanel()"
-                        class="flex items-center gap-1.5 px-3 py-1.5 bg-tosca-50 hover:bg-tosca-100 text-tosca-700 hover:text-tosca-800 border border-tosca-200/80 rounded-full text-xs font-bold transition-all shadow-sm"
-                        title="Buka Menu Aksesibilitas & Ramah Disabilitas (Alt + A)">
-                        <span class="text-sm">♿</span> Aksesibilitas
-                    </button>
-
                     <!-- Pemilih Bahasa / Language Switcher Dropdown -->
                     <div class="relative group">
                         <button type="button" class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 hover:bg-gray-100 text-gray-700 border border-gray-200/80 rounded-full text-xs font-bold transition-all shadow-sm">
@@ -398,10 +393,6 @@
                         </div>
                     </div>
 
-                    <a href="{{ route('permohonan.lacak') }}"
-                        class="text-gray-600 hover:text-tosca-600 px-3 py-2 text-sm font-semibold rounded-full hover:bg-tosca-50 transition-colors">
-                        Lacak Status
-                    </a>
                     <a href="{{ route('permohonan.create') }}"
                         class="bg-gradient-to-r from-tosca-500 to-tosca-600 hover:from-tosca-600 hover:to-tosca-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-lg shadow-tosca-500/40 transition-all transform hover:-translate-y-0.5">
                         Ajukan Permohonan
@@ -467,6 +458,8 @@
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-tosca-50">Prosedur, Waktu & Biaya</a>
                 <a href="{{ route('standar.hak-kewajiban') }}"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-tosca-50">Hak & Kewajiban</a>
+                <a href="{{ route('permohonan.lacak') }}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-tosca-50">Lacak Status Permohonan</a>
                 <a href="{{ route('standar.faq') }}"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-tosca-50">Tanya Jawab (FAQ) & Privasi</a>
                 <a href="{{ route('standar.kontak') }}"
@@ -512,14 +505,6 @@
                         </div>
                     </div>
 
-                    <button type="button" onclick="toggleA11yPanel()"
-                        class="w-full text-center px-4 py-2.5 bg-tosca-50 text-tosca-700 hover:bg-tosca-100 rounded-lg font-bold text-sm flex items-center justify-center gap-2 border border-tosca-200 transition-colors">
-                        <span>♿</span> Fitur Aksesibilitas & Disabilitas
-                    </button>
-                    <a href="{{ route('permohonan.lacak') }}"
-                        class="block w-full text-center px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-lg font-semibold text-sm">
-                        Lacak Status Permohonan
-                    </a>
                     <a href="{{ route('permohonan.create') }}"
                         class="block w-full text-center px-4 py-3 bg-gradient-to-r from-tosca-500 to-tosca-600 text-white rounded-lg font-bold shadow-md hover:shadow-lg">
                         Ajukan Permohonan
