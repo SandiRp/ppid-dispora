@@ -144,4 +144,17 @@ class PermohonanFlowTest extends TestCase
         $this->actingAs($superadmin)->get('/admin/audit-logs')->assertStatus(200);
         $this->actingAs($superadmin)->get('/admin/profil-setting')->assertStatus(200);
     }
+
+    public function test_admin_dashboard_dan_keberatan_dapat_diakses_oleh_admin(): void
+    {
+        $admin = User::create([
+            'name' => 'Admin PPID',
+            'email' => 'admin.ppid@example.com',
+            'password' => Hash::make('password123'),
+            'role' => 'admin',
+        ]);
+
+        $this->actingAs($admin)->get('/admin/dashboard')->assertStatus(200);
+        $this->actingAs($admin)->get('/admin/keberatan')->assertStatus(200);
+    }
 }

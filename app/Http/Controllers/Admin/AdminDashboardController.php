@@ -26,7 +26,7 @@ class AdminDashboardController extends Controller
 
         // 2. Statistik Keberatan
         $totalKeberatan = Keberatan::count();
-        $keberatanMenunggu = Keberatan::where('status_tanggapan', 'menunggu')->count();
+        $keberatanMenunggu = Keberatan::where('status', 'menunggu')->count();
 
         // 3. Statistik Konten
         $totalBerita = Berita::count();

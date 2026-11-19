@@ -126,7 +126,7 @@ class KeberatanController extends Controller
         }
 
         if ($request->filled('status')) {
-            $query->where('status_tanggapan', $request->status);
+            $query->where('status', $request->status);
         }
 
         $keberatans = $query->latest()->paginate(20)->withQueryString();
@@ -149,7 +149,7 @@ class KeberatanController extends Controller
         }
 
         if ($request->filled('status')) {
-            $query->where('status_tanggapan', $request->status);
+            $query->where('status', $request->status);
         }
 
         $items = $query->latest()->get();
@@ -191,8 +191,8 @@ class KeberatanController extends Controller
                     "'" . $item->nomor_telepon,
                     $item->alasan_keberatan,
                     $item->keterangan_keberatan,
-                    ucfirst($item->status_tanggapan ?? 'menunggu'),
-                    $item->tanggapan_atasan ?? '-',
+                    ucfirst($item->status ?? 'menunggu'),
+                    $item->tanggapan_atasan_ppid ?? '-',
                     $item->tanggal_tanggapan ? $item->tanggal_tanggapan->format('Y-m-d H:i') : '-'
                 ], ';');
             }
