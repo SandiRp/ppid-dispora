@@ -39,6 +39,13 @@
         </div>
 
         <div class="p-8">
+            @if (session('status'))
+                <div
+                    class="bg-emerald-50 text-emerald-800 p-4 rounded-xl text-sm mb-6 border border-emerald-200 text-center font-medium">
+                    {{ session('status') }}
+                </div>
+            @endif
+
             @if ($errors->any())
                 <div
                     class="bg-red-50 text-red-600 p-4 rounded-xl text-sm mb-6 border border-red-200 text-center font-medium">
@@ -56,7 +63,12 @@
                 </div>
 
                 <div class="space-y-2">
-                    <label class="block text-sm font-semibold text-gray-700">Password</label>
+                    <div class="flex items-center justify-between">
+                        <label class="block text-sm font-semibold text-gray-700">Password</label>
+                        <a href="{{ route('password.request') }}" class="text-xs font-semibold text-tosca-600 hover:text-tosca-700 hover:underline">
+                            Lupa Password?
+                        </a>
+                    </div>
                     <input type="password" name="password" required placeholder="••••••••"
                         class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-tosca-500 outline-none transition-all">
                 </div>

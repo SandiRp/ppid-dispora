@@ -35,4 +35,13 @@ return [
         ],
     ],
 
+    'ppid' => [
+        'admin_email' => env('PPID_ADMIN_EMAIL', 'disporajatim2024@gmail.com'),
+    ],
+
+    'whatsapp' => [
+        'token' => env('FONNTE_TOKEN', env('WA_GATEWAY_TOKEN')),
+        'endpoint' => env('WA_GATEWAY_ENDPOINT', 'https://api.fonnte.com/send'),
+    ],
+
 ];

@@ -30,11 +30,8 @@
                         Maklumat Pelayanan
                     </h2>
 
-                    <p class="text-xl md:text-2xl text-gray-700 leading-relaxed font-serif italic mb-12">
-                        "Dengan Ini, Kami Pimpinan dan Seluruh Jajaran Dinas Kepemudaan dan Olahraga Provinsi Jawa Timur
-                        Menyatakan Sanggup Menyelenggarakan Pelayanan Informasi Publik Sesuai Standar Pelayanan Yang Telah
-                        Ditetapkan, Serta Siap Menerima Sanksi Sesuai Peraturan Perundang-Undangan Apabila Pelayanan Yang
-                        Diberikan Tidak Sesuai Standar."
+                    <p class="text-xl md:text-2xl text-gray-700 leading-relaxed font-serif italic mb-12 whitespace-pre-line">
+                        "{{ (!empty($setting) && $setting->konten) ? $setting->konten : 'Dengan Ini, Kami Pimpinan dan Seluruh Jajaran Dinas Kepemudaan dan Olahraga Provinsi Jawa Timur Menyatakan Sanggup Menyelenggarakan Pelayanan Informasi Publik Sesuai Standar Pelayanan Yang Telah Ditetapkan, Serta Siap Menerima Sanksi Sesuai Peraturan Perundang-Undangan Apabila Pelayanan Yang Diberikan Tidak Sesuai Standar.' }}"
                     </p>
 
                     <div class="flex justify-end mt-12">

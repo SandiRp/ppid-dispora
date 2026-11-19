@@ -20,6 +20,31 @@
             </a>
         </div>
 
+        <!-- Filter & Search Bar -->
+        <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
+            <form action="{{ route('admin.dokumen.index') }}" method="GET" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <input type="text" name="q" value="{{ request('q') }}"
+                    placeholder="Cari judul, keterangan, atau tahun..."
+                    class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:bg-white focus:ring-2 focus:ring-tosca-500 outline-none">
+                <select name="kategori" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:bg-white focus:ring-2 focus:ring-tosca-500 outline-none">
+                    <option value="">-- Semua Kategori Dokumen --</option>
+                    <option value="regulasi" {{ request('kategori') == 'regulasi' ? 'selected' : '' }}>Regulasi</option>
+                    <option value="sop" {{ request('kategori') == 'sop' ? 'selected' : '' }}>SOP PPID</option>
+                    <option value="sk" {{ request('kategori') == 'sk' ? 'selected' : '' }}>SK Pengelola PPID</option>
+                </select>
+                <div class="flex items-center gap-2">
+                    <button type="submit" class="w-full py-2 bg-gray-800 hover:bg-gray-900 text-white font-bold text-xs rounded-xl transition-colors">
+                        Filter Dokumen
+                    </button>
+                    @if (request()->hasAny(['q', 'kategori']))
+                        <a href="{{ route('admin.dokumen.index') }}" class="px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-600 text-xs font-bold rounded-xl transition-colors">
+                            Reset
+                        </a>
+                    @endif
+                </div>
+            </form>
+        </div>
+
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-sm text-gray-600">
@@ -61,19 +86,28 @@
                                 </td>
 
                                 <td class="py-4 px-6 text-center space-y-2">
-                                    <a href="{{ asset('storage/' . $item->file_pdf) }}" target="_blank"
-                                        class="inline-flex items-center justify-center w-full px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold rounded border border-gray-300 transition-colors">
-                                        Cek PDF
-                                    </a>
-                                    <form action="{{ route('admin.dokumen.destroy', $item->id) }}" method="POST"
-                                        onsubmit="return confirm('Yakin ingin menghapus dokumen ini? File PDF juga akan terhapus.');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="inline-flex items-center justify-center w-full px-3 py-1.5 bg-red-50 hover:bg-red-500 hover:text-white text-red-600 text-xs font-semibold rounded border border-red-200 transition-colors mt-1">
-                                            Hapus
-                                        </button>
-                                    </form>
+                                    <div class="flex items-center justify-center gap-1">
+                                        <a href="{{ asset('storage/' . $item->file_pdf) }}" target="_blank"
+                                            class="inline-flex items-center justify-center px-2 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold rounded border border-gray-300 transition-colors"
+                                            title="Cek PDF">
+                                            Cek PDF
+                                        </a>
+                                        <a href="{{ route('admin.dokumen.edit', $item->id) }}"
+                                            class="inline-flex items-center justify-center px-2 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-600 text-xs font-semibold rounded border border-blue-200 transition-colors"
+                                            title="Edit Dokumen">
+                                            Edit
+                                        </a>
+                                        <form action="{{ route('admin.dokumen.destroy', $item->id) }}" method="POST"
+                                            onsubmit="return confirm('Yakin ingin menghapus dokumen ini? File PDF juga akan terhapus.');"
+                                            class="inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="inline-flex items-center justify-center px-2 py-1.5 bg-red-50 hover:bg-red-500 hover:text-white text-red-600 text-xs font-semibold rounded border border-red-200 transition-colors">
+                                                Hapus
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @empty
@@ -86,6 +120,12 @@
                     </tbody>
                 </table>
             </div>
+
+            @if ($dokumens->hasPages())
+                <div class="p-4 border-t border-gray-100">
+                    {{ $dokumens->links() }}
+                </div>
+            @endif
         </div>
     </div>
 
@@ -94,7 +134,7 @@
         @if (session('success'))
             Swal.fire({
                 title: "Berhasil!",
-                text: "{!! session('success') !!}",
+                text: @json(session('success')),
                 icon: "success",
                 confirmButtonColor: "#14b8a6",
                 timer: 3000

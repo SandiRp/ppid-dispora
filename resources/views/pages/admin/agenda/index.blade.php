@@ -20,6 +20,23 @@
             </a>
         </div>
 
+        <!-- Filter & Search Bar -->
+        <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
+            <form action="{{ route('admin.agenda.index') }}" method="GET" class="flex items-center gap-3">
+                <input type="text" name="q" value="{{ request('q') }}"
+                    placeholder="Cari judul, lokasi, atau deskripsi agenda kegiatan..."
+                    class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:bg-white focus:ring-2 focus:ring-tosca-500 outline-none">
+                <button type="submit" class="px-5 py-2 bg-gray-800 hover:bg-gray-900 text-white font-bold text-xs rounded-xl transition-colors whitespace-nowrap">
+                    Cari Agenda
+                </button>
+                @if (request()->filled('q'))
+                    <a href="{{ route('admin.agenda.index') }}" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-600 text-xs font-bold rounded-xl transition-colors">
+                        Reset
+                    </a>
+                @endif
+            </form>
+        </div>
+
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-sm text-gray-600">
@@ -68,15 +85,23 @@
                                 </td>
 
                                 <td class="py-4 px-6 text-center">
-                                    <form action="{{ route('admin.agenda.destroy', $item->id) }}" method="POST"
-                                        onsubmit="return confirm('Yakin ingin menghapus agenda kegiatan ini?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="inline-flex items-center justify-center w-full px-3 py-1.5 bg-red-50 hover:bg-red-500 hover:text-white text-red-600 text-xs font-semibold rounded border border-red-200 transition-colors">
-                                            Hapus
-                                        </button>
-                                    </form>
+                                    <div class="flex items-center justify-center gap-1">
+                                        <a href="{{ route('admin.agenda.edit', $item->id) }}"
+                                            class="inline-flex items-center justify-center px-2 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-600 text-xs font-semibold rounded border border-blue-200 transition-colors"
+                                            title="Edit Agenda">
+                                            Edit
+                                        </a>
+                                        <form action="{{ route('admin.agenda.destroy', $item->id) }}" method="POST"
+                                            onsubmit="return confirm('Yakin ingin menghapus agenda kegiatan ini?');"
+                                            class="inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="inline-flex items-center justify-center px-2 py-1.5 bg-red-50 hover:bg-red-500 hover:text-white text-red-600 text-xs font-semibold rounded border border-red-200 transition-colors">
+                                                Hapus
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @empty
@@ -88,6 +113,12 @@
                     </tbody>
                 </table>
             </div>
+
+            @if ($agendas->hasPages())
+                <div class="p-4 border-t border-gray-100">
+                    {{ $agendas->links() }}
+                </div>
+            @endif
         </div>
     </div>
 
@@ -96,7 +127,7 @@
         @if (session('success'))
             Swal.fire({
                 title: "Berhasil!",
-                text: "{!! session('success') !!}",
+                text: @json(session('success')),
                 icon: "success",
                 confirmButtonColor: "#14b8a6",
                 timer: 3000

@@ -14,17 +14,13 @@
 
             {{-- <div
                 class="bg-gray-50 border-2 border-dashed border-gray-200 rounded-2xl p-4 flex flex-col items-center justify-center min-h-[400px] relative overflow-hidden group"> --}}
-            <img src="{{ asset('assets/images/soppid.jpeg') }}" alt="Bagan Struktur Organisasi PPID Dispora Jatim"
+            <img src="{{ (!empty($setting) && $setting->gambar) ? asset('storage/' . $setting->gambar) : asset('assets/images/soppid.jpeg') }}"
+                alt="{{ $setting->judul ?? 'Bagan Struktur Organisasi PPID Dispora Jatim' }}"
                 class="max-w-full h-auto rounded-xl mx-auto shadow-md">
 
-
-            {{-- </div> --}}
-
             <div class="mt-8 text-center max-w-3xl mx-auto">
-                <p class="text-gray-600 leading-relaxed text-sm md:text-base">
-                    Struktur organisasi PPID Dispora Jatim dibentuk untuk memastikan alur koordinasi, pelayanan, dan
-                    pendokumentasian informasi publik berjalan secara terstruktur, efektif, dan efisien dari tingkat
-                    pimpinan hingga ke petugas layanan informasi di garda terdepan.
+                <p class="text-gray-600 leading-relaxed text-sm md:text-base whitespace-pre-line">
+                    {{ (!empty($setting) && $setting->konten) ? $setting->konten : 'Struktur organisasi PPID Dispora Jatim dibentuk untuk memastikan alur koordinasi, pelayanan, dan pendokumentasian informasi publik berjalan secara terstruktur, efektif, dan efisien dari tingkat pimpinan hingga ke petugas layanan informasi di garda terdepan.' }}
                 </p>
             </div>
         </div>

@@ -53,6 +53,14 @@
         </div>
 
         <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+            <a href="{{ route('admin.dashboard') }}"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ request()->routeIs('admin.dashboard') ? 'bg-tosca-800 text-white font-semibold border-l-4 border-tosca-400' : 'text-tosca-100 hover:bg-tosca-800/50 hover:text-white' }}">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                </svg>
+                Dashboard
+            </a>
+
             <p class="px-3 text-xs font-bold text-tosca-400 uppercase tracking-wider mb-2 mt-4">Layanan Publik</p>
 
             <a href="{{ route('admin.permohonan.index') }}"
@@ -65,7 +73,37 @@
                 Permohonan Masuk
             </a>
 
+            <a href="{{ route('admin.keberatan.index') }}"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ request()->routeIs('admin.keberatan.*') ? 'bg-tosca-800 text-white font-semibold border-l-4 border-tosca-400' : 'text-tosca-100 hover:bg-tosca-800/50 hover:text-white' }}">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+                    </path>
+                </svg>
+                Pengajuan Keberatan
+            </a>
+
+            <a href="{{ route('admin.survei.index') }}"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ request()->routeIs('admin.survei.*') ? 'bg-tosca-800 text-white font-semibold border-l-4 border-tosca-400' : 'text-tosca-100 hover:bg-tosca-800/50 hover:text-white' }}">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z">
+                    </path>
+                </svg>
+                Hasil Survei (IKM)
+            </a>
+
             <p class="px-3 text-xs font-bold text-tosca-400 uppercase tracking-wider mb-2 mt-6">Kelola Konten</p>
+
+            @if (auth()->user()?->role === 'superadmin')
+                <a href="{{ route('admin.profil-setting.index') }}"
+                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ request()->routeIs('admin.profil-setting.*') ? 'bg-tosca-800 text-white font-semibold border-l-4 border-tosca-400' : 'text-tosca-100 hover:bg-tosca-800/50 hover:text-white' }}">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                    </svg>
+                    Halaman Profil (CMS)
+                </a>
+            @endif
 
             <a href="{{ route('admin.berita.index') }}"
                 class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ request()->routeIs('admin.berita.*') ? 'bg-tosca-800 text-white font-semibold border-l-4 border-tosca-400' : 'text-tosca-100 hover:bg-tosca-800/50 hover:text-white' }}">
@@ -116,10 +154,30 @@
                 </svg>
                 Agenda Kegiatan
             </a>
+
+            @if (auth()->user()?->role === 'superadmin')
+                <p class="px-3 text-xs font-bold text-tosca-400 uppercase tracking-wider mb-2 mt-6">Sistem & Keamanan</p>
+
+                <a href="{{ route('admin.audit-logs.index') }}"
+                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ request()->routeIs('admin.audit-logs.*') ? 'bg-tosca-800 text-white font-semibold border-l-4 border-tosca-400' : 'text-tosca-100 hover:bg-tosca-800/50 hover:text-white' }}">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    Jejak Audit (Logs)
+                </a>
+
+                <a href="{{ route('admin.users.index') }}"
+                    class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors {{ request()->routeIs('admin.users.*') ? 'bg-tosca-800 text-white font-semibold border-l-4 border-tosca-400' : 'text-tosca-100 hover:bg-tosca-800/50 hover:text-white' }}">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    Manajemen Pengguna
+                </a>
+            @endif
         </nav>
 
         <div class="p-4 bg-tosca-900 border-t border-tosca-800 text-sm">
-            <div class="flex items-center gap-3">
+            <a href="{{ route('admin.profile.edit') }}" class="flex items-center gap-3 hover:bg-tosca-800/60 p-1.5 -m-1.5 rounded-xl transition-colors" title="Buka Profil & Ganti Password">
                 <div class="w-8 h-8 rounded-full bg-tosca-700 flex items-center justify-center shrink-0">
                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -128,9 +186,9 @@
                 </div>
                 <div class="overflow-hidden">
                     <p class="font-bold text-white truncate">{{ Auth::user()->name ?? 'Admin' }}</p>
-                    <p class="text-xs text-tosca-300 truncate">ASN Dispora Jatim</p>
+                    <p class="text-xs text-tosca-300 truncate uppercase tracking-wider font-semibold">{{ Auth::user()->role ?? 'Petugas PPID' }}</p>
                 </div>
-            </div>
+            </a>
         </div>
     </aside>
 
@@ -165,6 +223,14 @@
                     </svg>
                     <span class="hidden sm:inline">Lihat Web Publik</span>
                     <span class="sm:hidden">Web</span>
+                </a>
+
+                <a href="{{ route('admin.profile.edit') }}"
+                    class="px-3 sm:px-3.5 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-sm font-semibold transition-colors flex items-center gap-1.5" title="Profil Akun & Ganti Password">
+                    <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                    </svg>
+                    <span class="hidden sm:inline">Profil & Password</span>
                 </a>
 
                 <span class="w-px h-6 bg-gray-200"></span>

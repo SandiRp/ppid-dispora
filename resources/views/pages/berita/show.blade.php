@@ -49,7 +49,11 @@
 
                 <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
                     <div class="prose max-w-none text-gray-700 text-lg leading-relaxed text-justify">
-                        {!! nl2br(e($berita->konten)) !!}
+                        @if ($berita->konten !== strip_tags($berita->konten))
+                            {!! clean($berita->konten) !!}
+                        @else
+                            {!! nl2br(e($berita->konten)) !!}
+                        @endif
                     </div>
                 </div>
             </div>

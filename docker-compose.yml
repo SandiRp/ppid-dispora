@@ -1,0 +1,62 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ppid_dispora_app
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-8080}:80"
+    env_file:
+      - .env.docker
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+    volumes:
+      - ppid_storage:/var/www/html/storage/app
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - ppid_network
+
+  db:
+    image: mysql:8.0
+    container_name: ppid_dispora_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ppid_dispora_db
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root_ppid_2026}
+      TZ: Asia/Jakarta
+    volumes:
+      - ppid_db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p\"$$MYSQL_ROOT_PASSWORD\""]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - ppid_network
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: ppid_dispora_pma
+    restart: unless-stopped
+    ports:
+      - "${PMA_PORT:-8081}:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      UPLOAD_LIMIT: 50M
+    depends_on:
+      - db
+    networks:
+      - ppid_network
+
+volumes:
+  ppid_db_data:
+  ppid_storage:
+
+networks:
+  ppid_network:
+    driver: bridge
